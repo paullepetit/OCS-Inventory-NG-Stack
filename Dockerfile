@@ -51,6 +51,30 @@ RUN /usr/sbin/a2enmod ssl
 RUN git clone https://github.com/OCSInventory-NG/OCSInventory-Server.git /tmp/ocs
 RUN git clone https://github.com/OCSInventory-NG/OCSInventory-ocsreports.git /tmp/ocs/ocsreports
 
+WORKDIR /tmp/ocs/Apache
+# A revoir
+cp -R /usr/lib/Apache
+cp -R /tmp/ocs/etc/logrotate.d/ocsinventory-server /etc/logrotate.d/ \
+mkdir -p /etc/ocsinventory-server/{plugins,perl} \
+mkdir -p /usr/share/ocsinventory-reports
+
+
+WORKDIR /tmp/ocs
+RUN cp -R ocsreports /usr/share/ocsinventory-reports \
+    chown -R www-data: /usr/share/ocsinventory-reports \
+    mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp} \
+    chown root:apache -R /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp} \
+    cp binutils/ipdiscover-util.pl /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl \
+    chown www-data: /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl \
+    chmod 755 /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl
+
+COPY DB/dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/
+COPY DB/init_db.sh sql/ocsweb.sql /tmp/
+RUN chmod +w /usr/share/ocsinventory-reports/ocsreports/dbconfig.inc.php \
+    chmod +x /tmp/init_db.sh \
+    /tmp/init_db.sh \
+    rm -fR /tmp/ocs                    
+
 EXPOSE 443
 EXPOSE 80
 
