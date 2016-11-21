@@ -15,12 +15,12 @@ RUN cp -R ocsreports /usr/share/ocsinventory-reports \
     chown www-data: /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl \
     chmod 755 /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl
 
-COPY dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/
-COPY init_db.sh ocsweb.sql /tmp/
-RUN chmod +w /usr/share/ocsinventory-reports/ocsreports/dbconfig.inc.php ;\
-    chmod +x /tmp/init_db.sh; \
-    /tmp/init_db.sh; \
-    rm -fR /tmp/OCSNG_UNIX_SERVER-2.2.1
+COPY DB/dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/
+COPY DB/init_db.sh sql/ocsweb.sql /tmp/
+RUN chmod +w /usr/share/ocsinventory-reports/ocsreports/dbconfig.inc.php \
+    chmod +x /tmp/init_db.sh \
+    /tmp/init_db.sh \
+    rm -fR /tmp/ocs
 
     
 
