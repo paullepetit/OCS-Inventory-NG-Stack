@@ -16,6 +16,6 @@ services :
       MYSQL_USER : ocs
       MYSQL_PASSWORD : ocs
     volumes :
-      - ./sql:/sql
+      - ./sql:/docker-entrypoint-initdb.d/
     ports :
       - 3306:3306
