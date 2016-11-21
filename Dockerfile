@@ -48,6 +48,9 @@ RUN /usr/sbin/a2enmod rewrite
 RUN /usr/sbin/a2ensite default-ssl
 RUN /usr/sbin/a2enmod ssl
 
+RUN git clone https://github.com/OCSInventory-NG/OCSInventory-Server.git /tmp/ocs
+RUN git clone https://github.com/OCSInventory-NG/OCSInventory-ocsreports.git /tmp/ocs/ocsreports
+
 EXPOSE 443
 EXPOSE 80
 
