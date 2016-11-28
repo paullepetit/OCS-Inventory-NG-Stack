@@ -67,7 +67,7 @@ RUN mkdir -p /etc/ocsinventory-server/plugins
 RUN mkdir -p /etc/ocsinventory-server/perl
 RUN mkdir -p /usr/share/ocsinventory-reports/ocsreports
 
-# Configure Apache2
+# Configure Apache2 variable envir
 ENV APACHE_RUN_USER     www-data
 ENV APACHE_RUN_GROUP    www-data
 ENV APACHE_LOG_DIR      /var/log/apache2
@@ -75,7 +75,6 @@ ENV APACHE_PID_FILE     /var/run/apache2.pid
 ENV APACHE_RUN_DIR      /var/run/apache2f
 ENV APACHE_LOCK_DIR     /var/lock/apache2
 ENV APACHE_LOG_DIR      /var/log/apache2
-
 
 WORKDIR /tmp/ocs
 RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports
@@ -101,7 +100,7 @@ ADD /conf/z-ocsinventory-server.conf /etc/apache2/conf-available/
 
 RUN ln -s /etc/apache2/conf-available/ocsinventory-reports.conf /etc/apache2/conf-enabled/ocsinventory-reports.conf
 RUN ln -s /etc/apache2/conf-available/z-ocsinventory-server.conf /etc/apache2/conf-enabled/z-ocsinventory-server.conf
-
+RUN rm /usr/share/ocsinventory-reports/ocsreports/install.php
 
 
 EXPOSE 80
