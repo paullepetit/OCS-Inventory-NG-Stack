@@ -45,10 +45,9 @@ RUN cpan -i XML::Entities
 #Set time zone Europe/Paris
 RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
-#Set permission and run cron
 
 RUN /usr/sbin/a2dissite 000-default
-RUN /usr/sbin/a2dissite default-ssl
+#RUN /usr/sbin/a2ensite default-ssl
 RUN /usr/sbin/a2enmod rewrite
 RUN /usr/sbin/a2enmod ssl
 RUN /usr/sbin/a2enmod authz_user
