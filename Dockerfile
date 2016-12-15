@@ -48,7 +48,6 @@ RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
 # Activation des modules
 RUN /usr/sbin/a2dissite 000-default
-#RUN /usr/sbin/a2ensite default-ssl
 RUN /usr/sbin/a2enmod rewrite
 RUN /usr/sbin/a2enmod ssl
 RUN /usr/sbin/a2enmod authz_user
