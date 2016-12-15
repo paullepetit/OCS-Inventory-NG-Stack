@@ -1,6 +1,6 @@
 FROM debian:latest
 
-MAINTAINER @palle version:1
+MAINTAINER @palle version:2
 
 RUN apt-get update
 
