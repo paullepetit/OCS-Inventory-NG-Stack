@@ -54,8 +54,8 @@ RUN /usr/sbin/a2enmod ssl
 RUN /usr/sbin/a2enmod authz_user
 
 # DL OCSserver & Ocsreports
-RUN git clone https://github.com/OCSInventory-NG/OCSInventory-Server.git /tmp/ocs
-RUN git clone https://github.com/OCSInventory-NG/OCSInventory-ocsreports.git /tmp/ocs/ocsreports
+RUN wget https://raw.githubusercontent.com/OCSInventory-NG/OCSInventory-Server/master/binutils/docker-download.sh 
+RUN sh docker-download.sh
 
 # Copie et création des répertoires principaux
 WORKDIR /tmp/ocs/Apache
