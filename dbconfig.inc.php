@@ -1,8 +1,8 @@
 <?php
-define("DB_NAME", "ocsweb");
-define("SERVER_READ","ocsinventoryngstack_db_1");
-define("SERVER_WRITE","ocsinventoryngstack_db_1");
-define("COMPTE_BASE","ocs");
-define("PSWD_BASE","ocs");
-$_SESSION["PSWD_BASE"]="ocs";
+define("DB_NAME", getenv('OCS_DBNAME'));
+define("SERVER_READ",getenv('OCS_DBSERVER_READ'));
+define("SERVER_WRITE",getenv('OCS_DBSERVER_WRITE'));
+define("COMPTE_BASE",getenv('OCS_DBUSER'));
+define("PSWD_BASE",getenv('OCS_DBPASS'));
+$_SESSION["PSWD_BASE"]=PSWD_BASE;
 ?>
