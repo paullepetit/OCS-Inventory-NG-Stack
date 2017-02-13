@@ -1,7 +1,7 @@
 version: '3'
 services :
   web :
-    image : palle/ocsinventory-image
+    image : palle/ocsinventory-image:latest
     container_name : ocsinventory-server
     restart: always
     environment :
@@ -10,6 +10,10 @@ services :
       OCS_DBSERVER_WRITE : ocsinventory-db
       OCS_DBUSER : ocs
       OCS_DBPASS : ocs
+    volumes :
+      - ocssrv:/usr/share/ocsinventory-reports/ocsreports/
+      - ocssrv:/etc/ocsinventory-reports/
+      - ocssrv:/var/lib/ocsinventory-reports/
     links :
       - db
     ports :
@@ -33,4 +37,6 @@ services :
 
 volumes:
   ocsdata:
+    driver: local
+  ocssrv:
     driver: local
