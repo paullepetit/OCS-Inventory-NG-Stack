@@ -3,7 +3,6 @@ services :
   web :
     image : ocsinventory/ocsinventory-docker-image:master
     container_name : ocsinventory-server
-    restart: always
     environment :
       OCS_DBNAME : ocsweb
       OCS_DBSERVER_READ : ocsinventory-db
@@ -11,7 +10,7 @@ services :
       OCS_DBUSER : ocs
       OCS_DBPASS : ocs
     volumes :
-      - ocssrv:/usr/share/ocsinventory-reports/ocsreports/
+      - ocssrv:/usr/share/ocsinventory-reports/
       - ocssrv:/etc/ocsinventory-reports/
       - ocssrv:/var/lib/ocsinventory-reports/
     links :
